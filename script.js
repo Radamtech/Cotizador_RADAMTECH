@@ -1,7 +1,6 @@
 let precios = {};
 let seleccion = [];
 
-// Cargar precios.json
 fetch("precios.json")
   .then(res => res.json())
   .then(data => {
@@ -9,7 +8,6 @@ fetch("precios.json")
     generarCategorias();
   });
 
-// Generar categorías y checkboxes
 function generarCategorias() {
   const contenedor = document.getElementById("categorias");
   contenedor.innerHTML = "";
@@ -24,29 +22,59 @@ function generarCategorias() {
       subDiv.innerHTML = `<h4>${sub}</h4>`;
 
       precios[categoria][sub].forEach(opcion => {
-        let checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.value = opcion.precio;
-        checkbox.dataset.nombre = opcion.nombre;
-        checkbox.dataset.categoria = categoria;
-        checkbox.dataset.sub = sub;
+        if(opcion.multiplicable){
+          let input = document.createElement("input");
+          input.type = "number";
+          input.min = 1;
+          input.value = 1;
+          input.dataset.nombre = opcion.nombre;
+          input.dataset.precio = opcion.precio;
 
-        checkbox.addEventListener("change", (e) => {
-          if (e.target.checked) {
-            seleccion.push(opcion);
-          } else {
-            seleccion = seleccion.filter(item => item.nombre !== opcion.nombre);
-          }
-          actualizarResumen();
-        });
+          input.addEventListener("input", e => {
+            let idx = seleccion.findIndex(item => item.nombre === opcion.nombre);
+            let cantidad = parseInt(e.target.value) || 0;
+            let precioTotal = cantidad * opcion.precio;
 
-        let label = document.createElement("label");
-        label.textContent = `${opcion.nombre} - $${opcion.precio}`;
+            if(idx !== -1){
+              seleccion[idx].cantidad = cantidad;
+              seleccion[idx].precioTotal = precioTotal;
+            } else {
+              seleccion.push({nombre: opcion.nombre, precio: opcion.precio, cantidad, precioTotal});
+            }
+            actualizarResumen();
+          });
 
-        let line = document.createElement("div");
-        line.appendChild(checkbox);
-        line.appendChild(label);
-        subDiv.appendChild(line);
+          let label = document.createElement("label");
+          label.textContent = `${opcion.nombre} x`;
+          let line = document.createElement("div");
+          line.classList.add("linea");
+          line.appendChild(label);
+          line.appendChild(input);
+          subDiv.appendChild(line);
+
+        } else {
+          let checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.dataset.nombre = opcion.nombre;
+          checkbox.dataset.precio = opcion.precio;
+
+          checkbox.addEventListener("change", e => {
+            if(e.target.checked){
+              seleccion.push({nombre: opcion.nombre, precio: opcion.precio});
+            } else {
+              seleccion = seleccion.filter(item => item.nombre !== opcion.nombre);
+            }
+            actualizarResumen();
+          });
+
+          let label = document.createElement("label");
+          label.textContent = `${opcion.nombre} - $${opcion.precio}`;
+          let line = document.createElement("div");
+          line.classList.add("linea");
+          line.appendChild(checkbox);
+          line.appendChild(label);
+          subDiv.appendChild(line);
+        }
       });
 
       div.appendChild(subDiv);
@@ -56,30 +84,27 @@ function generarCategorias() {
   });
 }
 
-// Actualizar resumen con mini-cards
-function actualizarResumen() {
+function actualizarResumen(){
   const resumenDiv = document.getElementById("resumen");
-  resumenDiv.innerHTML = ""; // Limpiar
+  resumenDiv.innerHTML = "";
 
   let subtotal = 0;
-
   seleccion.forEach(item => {
-    subtotal += item.precio;
+    let precioItem = item.precioTotal || item.precio;
+    subtotal += precioItem;
+
     let card = document.createElement("div");
     card.classList.add("item");
-    card.innerHTML = `
-      <span class="name">${item.nombre}</span>
-      <span class="price">$${item.precio}</span>
-    `;
+    let cantidadText = item.cantidad ? ` x${item.cantidad}` : "";
+    card.innerHTML = `<span class="name">${item.nombre}${cantidadText}</span><span class="price">$${precioItem}</span>`;
     resumenDiv.appendChild(card);
   });
 
   let descuento = parseInt(document.getElementById("descuento").value) || 0;
-  let totalFinal = subtotal - (subtotal * descuento / 100);
+  let totalFinal = subtotal - (subtotal*descuento/100);
   document.getElementById("total").textContent = `$${totalFinal}`;
 }
 
-// Descargar PDF con jsPDF + autoTable
 document.getElementById("descargarPDF").addEventListener("click", () => {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -89,18 +114,23 @@ document.getElementById("descargarPDF").addEventListener("click", () => {
   doc.setFontSize(12);
   doc.text("Cotización de Servicios Digitales", 105, 28, { align: "center" });
 
-  let rows = seleccion.map(item => [item.nombre, `$${item.precio}`]);
-  let subtotal = seleccion.reduce((acc, item) => acc + item.precio, 0);
-  let descuento = parseInt(document.getElementById("descuento").value) || 0;
-  let totalFinal = subtotal - (subtotal * descuento / 100);
+  let rows = seleccion.map(item => {
+    let precioItem = item.precioTotal || item.precio;
+    let cantidad = item.cantidad || "";
+    return [item.nombre, cantidad, `$${precioItem}`];
+  });
 
-  rows.push(["", ""]);
-  rows.push(["Subtotal", `$${subtotal}`]);
-  rows.push([`Descuento (${descuento}%)`, `- $${(subtotal * descuento / 100).toFixed(2)}`]);
-  rows.push(["TOTAL", `$${totalFinal}`]);
+  let subtotal = seleccion.reduce((acc,item)=>acc + (item.precioTotal||item.precio),0);
+  let descuento = parseInt(document.getElementById("descuento").value) || 0;
+  let totalFinal = subtotal - (subtotal*descuento/100);
+
+  rows.push(["", "", ""]);
+  rows.push(["Subtotal","", `$${subtotal}`]);
+  rows.push([`Descuento (${descuento}%)`,"", `- $${(subtotal*descuento/100).toFixed(2)}`]);
+  rows.push(["TOTAL","", `$${totalFinal}`]);
 
   doc.autoTable({
-    head: [["Concepto", "Precio"]],
+    head: [["Concepto","Cant.","Precio"]],
     body: rows,
     startY: 40,
     theme: "grid",
@@ -117,27 +147,25 @@ document.getElementById("descargarPDF").addEventListener("click", () => {
   doc.save("cotizacion.pdf");
 });
 
-// Enviar WhatsApp
-document.getElementById("enviarWhatsApp").addEventListener("click", () => {
+document.getElementById("enviarWhatsApp").addEventListener("click", ()=>{
   let telefono = document.getElementById("telefono").value;
-  if(!telefono){
-    alert("Ingresa un número de WhatsApp");
-    return;
-  }
+  if(!telefono){ alert("Ingresa un número de WhatsApp"); return; }
 
   let mensaje = "Cotización RADAM TECH%0A%0A";
   seleccion.forEach(item=>{
-    mensaje += `${item.nombre} - $${item.precio}%0A`;
+    let cantidad = item.cantidad ? ` x${item.cantidad}` : "";
+    let precioItem = item.precioTotal || item.precio;
+    mensaje += `${item.nombre}${cantidad} - $${precioItem}%0A`;
   });
 
-  let subtotal = seleccion.reduce((acc,item)=>acc+item.precio,0);
-  let descuento = parseInt(document.getElementById("descuento").value)||0;
-  let totalFinal = subtotal-(subtotal*descuento/100);
+  let subtotal = seleccion.reduce((acc,item)=>acc + (item.precioTotal||item.precio),0);
+  let descuento = parseInt(document.getElementById("descuento").value) || 0;
+  let totalFinal = subtotal - (subtotal*descuento/100);
 
   mensaje += `%0ASubtotal: $${subtotal}`;
   mensaje += `%0ADescuento: ${descuento}%`;
   mensaje += `%0ATOTAL: $${totalFinal}`;
   mensaje += `%0ANotas: ${document.getElementById("notas").value}`;
 
-  window.open(`https://wa.me/${telefono}?text=${mensaje}`, "_blank");
+  window.open(`https://wa.me/${telefono}?text=${mensaje}`,"_blank");
 });
