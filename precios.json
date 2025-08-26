@@ -1,75 +1,93 @@
 {
   "Paginas Web": {
     "Básicos": [
-      { "nombre": "Diseño de página informativa", "precio": 1500 },
-      { "nombre": "Número de secciones", "precio": 200 },
-      { "nombre": "Optimización SEO inicial", "precio": 800 },
-      { "nombre": "Integración de formulario de contacto", "precio": 400 }
+      { "nombre": "Lógica de Textos y Diseño", "precio": 500 },
+      { "nombre": "Número de páginas", "precio": 200 },
+      { "nombre": "Número de Secciones", "precio": 150 },
+      { "nombre": "Imágenes y Logos", "precio": 300 },
+      { "nombre": "Ubicaciones, Documentos, Frames, etc", "precio": 250 },
+      { "nombre": "Animaciones", "precio": 400 },
+      { "nombre": "Multiplataforma", "precio": 350 }
     ],
     "Avanzados": [
-      { "nombre": "Sistema de Blog / Noticias", "precio": 1200 },
-      { "nombre": "E-commerce (carrito de compras)", "precio": 2500 },
-      { "nombre": "Integración de pasarelas de pago", "precio": 1000 },
-      { "nombre": "Multilenguaje", "precio": 900 }
+      { "nombre": "Sistema de Blogs/Noticias", "precio": 600 },
+      { "nombre": "Sistema de Portafolio/Galería", "precio": 700 },
+      { "nombre": "Sistema de Comentarios", "precio": 400 },
+      { "nombre": "Sistema de Reseñas/Testimonios", "precio": 500 },
+      { "nombre": "Múltiples idiomas", "precio": 450 },
+      { "nombre": "Sistema de Pagos en tarjeta", "precio": 800 },
+      { "nombre": "Sistema de Catálogos", "precio": 600 },
+      { "nombre": "Sistema de Carrito y Gestión de pedidos", "precio": 900 },
+      { "nombre": "Certificado SSL", "precio": 200 },
+      { "nombre": "Política de privacidad y aviso legal", "precio": 150 }
+    ],
+    "Profesionales": [
+      { "nombre": "Sistema de Log-In/Register", "precio": 700 },
+      { "nombre": "Sistema de Permisos o Roles", "precio": 600 },
+      { "nombre": "Integración con APIs de terceros", "precio": 900 },
+      { "nombre": "Buscador avanzado", "precio": 500 },
+      { "nombre": "Análisis y métricas", "precio": 400 }
+    ],
+    "Extras": [
+      { "nombre": "Mantenimiento Mensual", "precio": 300 },
+      { "nombre": "Dominio y Hosting", "precio": 250 },
+      { "nombre": "SEO", "precio": 350 },
+      { "nombre": "Analíticas web", "precio": 300 }
     ]
   },
   "Aplicaciones": {
     "Básicos": [
-      { "nombre": "Número de pantallas", "precio": 300 },
-      { "nombre": "Animaciones básicas", "precio": 700 }
+      { "nombre": "Número de Pantallas", "precio": 300 },
+      { "nombre": "Elementos de interfaz de Usuario", "precio": 250 },
+      { "nombre": "Multiplataforma", "precio": 350 },
+      { "nombre": "Imágenes y Logos", "precio": 200 },
+      { "nombre": "Ubicaciones, Documentos, Frames, etc", "precio": 180 },
+      { "nombre": "Animaciones", "precio": 220 }
     ],
     "Avanzados": [
-      { "nombre": "Login con redes sociales", "precio": 1200 },
-      { "nombre": "Notificaciones push", "precio": 1000 },
-      { "nombre": "Sincronización en la nube", "precio": 1500 }
+      { "nombre": "Base de datos", "precio": 500 },
+      { "nombre": "Log-in/Register", "precio": 400 },
+      { "nombre": "Sistema de Permisos/Roles", "precio": 450 },
+      { "nombre": "Notificaciones push", "precio": 350 },
+      { "nombre": "Sistemas de Pagos", "precio": 600 }
+    ],
+    "Profesionales": [
+      { "nombre": "Integración con APIs de terceros", "precio": 700 },
+      { "nombre": "Localización y multi-idioma", "precio": 500 },
+      { "nombre": "Análisis y métricas", "precio": 400 },
+      { "nombre": "Sistema de búsqueda avanzada y filtros", "precio": 450 }
+    ],
+    "Extras": [
+      { "nombre": "Mantenimiento y Soporte mensual", "precio": 300 },
+      { "nombre": "Publicación en tiendas de aplicaciones", "precio": 250 },
+      { "nombre": "Marketing y ASO", "precio": 400 }
     ]
   },
   "Servidores": {
-    "Hosting y BD": [
-      { "nombre": "Servidor web (1 año)", "precio": 2000 },
-      { "nombre": "Base de datos optimizada", "precio": 1500 }
+    "Básicos": [
+      { "nombre": "Servidor Web (Apache/Nginx)", "precio": 500 },
+      { "nombre": "Sistema Operativo (Linux/Windows)", "precio": 300 },
+      { "nombre": "Base de Datos (MySQL/PostgreSQL)", "precio": 400 },
+      { "nombre": "Acceso Remoto (SSH)", "precio": 200 },
+      { "nombre": "Firewall básico", "precio": 250 }
     ],
-    "Seguridad": [
-      { "nombre": "Certificado SSL", "precio": 500 },
-      { "nombre": "Firewall y protección", "precio": 1200 }
-    ]
-  },
-  "Automatización": {
-    "RPA": [
-      { "nombre": "Bot de automatización simple", "precio": 1800 },
-      { "nombre": "Bot avanzado con IA", "precio": 3500 }
-    ]
-  },
-  "Diseño": {
-    "Identidad": [
-      { "nombre": "Logo profesional", "precio": 1000 },
-      { "nombre": "Manual de marca", "precio": 2000 }
+    "Avanzados": [
+      { "nombre": "Certificado SSL", "precio": 200 },
+      { "nombre": "Monitoreo de Rendimiento", "precio": 350 },
+      { "nombre": "Automatización de tareas", "precio": 400 },
+      { "nombre": "Control de Versiones (Git)", "precio": 300 }
     ],
-    "Promocionales": [
-      { "nombre": "Flyers / Posters", "precio": 500 },
-      { "nombre": "Tarjetas de presentación", "precio": 300 }
-    ]
-  },
-  "Marketing Digital": {
-    "Redes Sociales": [
-      { "nombre": "Gestión de Facebook + Instagram (1 mes)", "precio": 2500 },
-      { "nombre": "Publicidad paga (campaña)", "precio": 1500 }
+    "Profesionales": [
+      { "nombre": "Balanceo de Carga (Load Balancing)", "precio": 600 },
+      { "nombre": "Contenedores (Docker)", "precio": 500 },
+      { "nombre": "Orquestación de Contenedores (Kubernetes)", "precio": 700 },
+      { "nombre": "Replicación de Bases de Datos", "precio": 400 }
     ],
-    "SEO / SEM": [
-      { "nombre": "Optimización SEO Avanzada", "precio": 2000 },
-      { "nombre": "Campaña Google Ads", "precio": 1800 }
-    ]
-  },
-  "Seguridad": {
-    "Protección": [
-      { "nombre": "Auditoría de seguridad web", "precio": 1200 },
-      { "nombre": "Pentesting básico", "precio": 3000 }
-    ]
-  },
-  "Otros": {
-    "Soporte": [
-      { "nombre": "Mantenimiento web mensual", "precio": 1200 },
-      { "nombre": "Consultoría tecnológica", "precio": 900 }
+    "Extras": [
+      { "nombre": "Copias de Seguridad", "precio": 250 },
+      { "nombre": "Dominio y DNS", "precio": 200 },
+      { "nombre": "Mantenimiento y Actualizaciones", "precio": 300 },
+      { "nombre": "Red de Distribución de Contenido (CDN)", "precio": 400 }
     ]
   }
 }
