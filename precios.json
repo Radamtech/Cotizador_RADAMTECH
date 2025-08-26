@@ -1,0 +1,75 @@
+{
+  "Paginas Web": {
+    "Básicos": [
+      { "nombre": "Diseño de página informativa", "precio": 1500 },
+      { "nombre": "Número de secciones", "precio": 200 },
+      { "nombre": "Optimización SEO inicial", "precio": 800 },
+      { "nombre": "Integración de formulario de contacto", "precio": 400 }
+    ],
+    "Avanzados": [
+      { "nombre": "Sistema de Blog / Noticias", "precio": 1200 },
+      { "nombre": "E-commerce (carrito de compras)", "precio": 2500 },
+      { "nombre": "Integración de pasarelas de pago", "precio": 1000 },
+      { "nombre": "Multilenguaje", "precio": 900 }
+    ]
+  },
+  "Aplicaciones": {
+    "Básicos": [
+      { "nombre": "Número de pantallas", "precio": 300 },
+      { "nombre": "Animaciones básicas", "precio": 700 }
+    ],
+    "Avanzados": [
+      { "nombre": "Login con redes sociales", "precio": 1200 },
+      { "nombre": "Notificaciones push", "precio": 1000 },
+      { "nombre": "Sincronización en la nube", "precio": 1500 }
+    ]
+  },
+  "Servidores": {
+    "Hosting y BD": [
+      { "nombre": "Servidor web (1 año)", "precio": 2000 },
+      { "nombre": "Base de datos optimizada", "precio": 1500 }
+    ],
+    "Seguridad": [
+      { "nombre": "Certificado SSL", "precio": 500 },
+      { "nombre": "Firewall y protección", "precio": 1200 }
+    ]
+  },
+  "Automatización": {
+    "RPA": [
+      { "nombre": "Bot de automatización simple", "precio": 1800 },
+      { "nombre": "Bot avanzado con IA", "precio": 3500 }
+    ]
+  },
+  "Diseño": {
+    "Identidad": [
+      { "nombre": "Logo profesional", "precio": 1000 },
+      { "nombre": "Manual de marca", "precio": 2000 }
+    ],
+    "Promocionales": [
+      { "nombre": "Flyers / Posters", "precio": 500 },
+      { "nombre": "Tarjetas de presentación", "precio": 300 }
+    ]
+  },
+  "Marketing Digital": {
+    "Redes Sociales": [
+      { "nombre": "Gestión de Facebook + Instagram (1 mes)", "precio": 2500 },
+      { "nombre": "Publicidad paga (campaña)", "precio": 1500 }
+    ],
+    "SEO / SEM": [
+      { "nombre": "Optimización SEO Avanzada", "precio": 2000 },
+      { "nombre": "Campaña Google Ads", "precio": 1800 }
+    ]
+  },
+  "Seguridad": {
+    "Protección": [
+      { "nombre": "Auditoría de seguridad web", "precio": 1200 },
+      { "nombre": "Pentesting básico", "precio": 3000 }
+    ]
+  },
+  "Otros": {
+    "Soporte": [
+      { "nombre": "Mantenimiento web mensual", "precio": 1200 },
+      { "nombre": "Consultoría tecnológica", "precio": 900 }
+    ]
+  }
+}
