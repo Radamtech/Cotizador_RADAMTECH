@@ -1,7 +1,7 @@
-// --- Cargar precios.json ---
 let precios = {};
 let seleccion = [];
 
+// Cargar precios.json
 fetch("precios.json")
   .then(res => res.json())
   .then(data => {
@@ -9,6 +9,7 @@ fetch("precios.json")
     generarCategorias();
   });
 
+// Generar categorías y checkboxes
 function generarCategorias() {
   const contenedor = document.getElementById("categorias");
   contenedor.innerHTML = "";
@@ -27,6 +28,8 @@ function generarCategorias() {
         checkbox.type = "checkbox";
         checkbox.value = opcion.precio;
         checkbox.dataset.nombre = opcion.nombre;
+        checkbox.dataset.categoria = categoria;
+        checkbox.dataset.sub = sub;
 
         checkbox.addEventListener("change", (e) => {
           if (e.target.checked) {
@@ -53,43 +56,40 @@ function generarCategorias() {
   });
 }
 
+// Actualizar resumen con mini-cards
 function actualizarResumen() {
-  let resumenDiv = document.getElementById("resumen");
-  resumenDiv.innerHTML = "<h3>Listado Seleccionado</h3>";
-  let ul = document.createElement("ul");
+  const resumenDiv = document.getElementById("resumen");
+  resumenDiv.innerHTML = ""; // Limpiar
 
   let subtotal = 0;
+
   seleccion.forEach(item => {
     subtotal += item.precio;
-    let li = document.createElement("li");
-    li.textContent = `${item.nombre} - $${item.precio}`;
-    ul.appendChild(li);
+    let card = document.createElement("div");
+    card.classList.add("item");
+    card.innerHTML = `
+      <span class="name">${item.nombre}</span>
+      <span class="price">$${item.precio}</span>
+    `;
+    resumenDiv.appendChild(card);
   });
-
-  resumenDiv.appendChild(ul);
 
   let descuento = parseInt(document.getElementById("descuento").value) || 0;
   let totalFinal = subtotal - (subtotal * descuento / 100);
-
-  document.getElementById("total").textContent = `TOTAL: $${totalFinal}`;
+  document.getElementById("total").textContent = `$${totalFinal}`;
 }
 
-// --- PDF profesional ---
+// Descargar PDF con jsPDF + autoTable
 document.getElementById("descargarPDF").addEventListener("click", () => {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
-
-  // Logo si lo tienes en base64 o url pública
-  // doc.addImage("logo.png", "PNG", 10, 10, 30, 30);
 
   doc.setFontSize(18);
   doc.text("RADAM TECH", 105, 20, { align: "center" });
   doc.setFontSize(12);
   doc.text("Cotización de Servicios Digitales", 105, 28, { align: "center" });
 
-  // Tabla
   let rows = seleccion.map(item => [item.nombre, `$${item.precio}`]);
-
   let subtotal = seleccion.reduce((acc, item) => acc + item.precio, 0);
   let descuento = parseInt(document.getElementById("descuento").value) || 0;
   let totalFinal = subtotal - (subtotal * descuento / 100);
@@ -103,10 +103,13 @@ document.getElementById("descargarPDF").addEventListener("click", () => {
     head: [["Concepto", "Precio"]],
     body: rows,
     startY: 40,
+    theme: "grid",
+    headStyles: { fillColor: [42,134,255], textColor: 255 },
+    bodyStyles: { fillColor: [5,20,35], textColor: 255 }
   });
 
   let notas = document.getElementById("notas").value;
-  if (notas) {
+  if(notas){
     doc.text("Notas:", 14, doc.lastAutoTable.finalY + 10);
     doc.text(notas, 14, doc.lastAutoTable.finalY + 16);
   }
@@ -114,22 +117,22 @@ document.getElementById("descargarPDF").addEventListener("click", () => {
   doc.save("cotizacion.pdf");
 });
 
-// --- WhatsApp ---
+// Enviar WhatsApp
 document.getElementById("enviarWhatsApp").addEventListener("click", () => {
   let telefono = document.getElementById("telefono").value;
-  if (!telefono) {
+  if(!telefono){
     alert("Ingresa un número de WhatsApp");
     return;
   }
 
   let mensaje = "Cotización RADAM TECH%0A%0A";
-  seleccion.forEach(item => {
+  seleccion.forEach(item=>{
     mensaje += `${item.nombre} - $${item.precio}%0A`;
   });
 
-  let subtotal = seleccion.reduce((acc, item) => acc + item.precio, 0);
-  let descuento = parseInt(document.getElementById("descuento").value) || 0;
-  let totalFinal = subtotal - (subtotal * descuento / 100);
+  let subtotal = seleccion.reduce((acc,item)=>acc+item.precio,0);
+  let descuento = parseInt(document.getElementById("descuento").value)||0;
+  let totalFinal = subtotal-(subtotal*descuento/100);
 
   mensaje += `%0ASubtotal: $${subtotal}`;
   mensaje += `%0ADescuento: ${descuento}%`;
