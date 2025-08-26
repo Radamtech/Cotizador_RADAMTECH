@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RADAM TECH — Cotizador Vendedores</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="brand">
+      <img src="logo.png" alt="RADAM TECH" class="logo" />
+      <div class="brand-text">
+        <h1>RADAM TECH</h1>
+        <p class="tagline">Cotizador para Vendedores</p>
+      </div>
+    </div>
+
+    <nav class="actions-right">
+      <button class="btn btn-outline" onclick="document.getElementById('seccion1').scrollIntoView({behavior:'smooth'})">Ir al Cotizador</button>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h2 class="hero-title">Cotiza con estilo, rápido y preciso</h2>
+      <p class="hero-subtitle">Selecciona servicios, aplica descuentos y exporta en PDF o WhatsApp en segundos.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" onclick="document.getElementById('seccion1').scrollIntoView({behavior:'smooth'})">Comenzar</button>
+        <button class="btn btn-ghost" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">Contacto</button>
+      </div>
+    </div>
+    <div class="glow"></div>
+  </section>
+
+  <main>
+    <!-- Sección 1 -->
+    <section id="seccion1" class="section card glass">
+      <div class="section-head">
+        <h3>Sección 1: Selecciona Opciones</h3>
+        <p>Activa las funciones que aplican para tu cliente. (Datos desde <code>precios.json</code>)</p>
+      </div>
+      <div id="categorias" class="categorias-grid"></div>
+      <div class="hint">
+        <span class="dot"></span> Consejo: Puedes combinar elementos de múltiples categorías (Web, Apps, Servidores, etc.)
+      </div>
+    </section>
+
+    <!-- Sección 2 -->
+    <section id="seccion2" class="section card glass">
+      <div class="section-head">
+        <h3>Sección 2: Descuentos y Notas</h3>
+        <p>Aplica un descuento porcentual y agrega notas para contexto del cliente.</p>
+      </div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="descuento">Descuento (%)</label>
+          <div class="input-wrap">
+            <input type="number" id="descuento" min="0" max="100" value="0" placeholder="0" />
+            <span class="suffix">%</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="telefono">Enviar a WhatsApp</label>
+          <div class="input-wrap">
+            <span class="prefix">+</span>
+            <input type="tel" id="telefono" placeholder="52XXXXXXXXXX" />
+          </div>
+          <small class="help">Incluye código de país (ej. 52 para MX)</small>
+        </div>
+
+        <div class="field field-notas">
+          <label for="notas">Notas</label>
+          <textarea id="notas" rows="4" placeholder="Ej. Entrega estimada en 10 días; incluye 2 rondas de cambios."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 3 -->
+    <section id="seccion3" class="section card glass">
+      <div class="section-head">
+        <h3>Sección 3: Total & Resumen</h3>
+        <p>Revisa el detalle seleccionado antes de enviar.</p>
+      </div>
+
+      <div id="resumen" class="resumen-list">
+        <!-- Se inyectan mini-cards desde script.js -->
+      </div>
+
+      <div class="total-bar">
+        <div class="total-info">
+          <span class="label">TOTAL</span>
+          <span id="total" class="total-amount">$0</span>
+        </div>
+        <div class="total-actions">
+          <button id="descargarPDF" class="btn btn-primary">
+            <span class="btn-icon">📄</span> Descargar PDF
+          </button>
+          <button id="enviarWhatsApp" class="btn btn-success">
+            <span class="btn-icon">💬</span> Enviar WhatsApp
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="RADAM TECH" class="logo sm" />
+        <div>
+          <strong>RADAM TECH</strong>
+          <div class="muted">Herramientas para vender mejor</div>
+        </div>
+      </div>
+      <div class="footer-contact">
+        <div>Contacto: <strong>Rodolfo Alexis</strong> o <strong>Daniela Valentina</strong></div>
+        <div>Tel: <a href="tel:+527226128347">722 612 8347</a></div>
+      </div>
+      <div class="footer-note muted">
+        Esta página es solo para los vendedores de RADAM TECH y automatiza el proceso de cotizar.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Librerías para PDF (mantén este orden) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-NaWf0m8p4N2Qnjh2nIov1T3cZ0qD2GQ1dQn3bV0dV4M6lX0f2c7m4qf3m1p58yX8mL4yRk2o0R3oXG4z4k+K2w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.3/jspdf.plugin.autotable.min.js" integrity="sha512-0H2Y6z8mGv7oFZtUJoJb2b6Y2wE3zT/7wIAtzM1QeYpK0Qf0R3Zx0m8Z0fDg3Zb8gQf1h3QqW2H0n2c9p1c0bWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- Tu lógica -->
+  <script src="script.js"></script>
+
+  <!-- Botón flotante subir -->
+  <button class="fab" aria-label="Subir" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</body>
+</html>
