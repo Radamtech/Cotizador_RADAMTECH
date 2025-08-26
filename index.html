@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RADAM TECH — Cotizador Vendedores</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -18,7 +17,6 @@
         <p class="tagline">Cotizador para Vendedores</p>
       </div>
     </div>
-
     <nav class="actions-right">
       <button class="btn btn-outline" onclick="document.getElementById('seccion1').scrollIntoView({behavior:'smooth'})">Ir al Cotizador</button>
     </nav>
@@ -31,7 +29,6 @@
       <p class="hero-subtitle">Selecciona servicios, aplica descuentos y exporta en PDF o WhatsApp en segundos.</p>
       <div class="hero-cta">
         <button class="btn btn-primary" onclick="document.getElementById('seccion1').scrollIntoView({behavior:'smooth'})">Comenzar</button>
-        <button class="btn btn-ghost" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">Contacto</button>
       </div>
     </div>
     <div class="glow"></div>
@@ -45,9 +42,6 @@
         <p>Activa las funciones que aplican para tu cliente. (Datos desde <code>precios.json</code>)</p>
       </div>
       <div id="categorias" class="categorias-grid"></div>
-      <div class="hint">
-        <span class="dot"></span> Consejo: Puedes combinar elementos de múltiples categorías (Web, Apps, Servidores, etc.)
-      </div>
     </section>
 
     <!-- Sección 2 -->
@@ -89,9 +83,7 @@
         <p>Revisa el detalle seleccionado antes de enviar.</p>
       </div>
 
-      <div id="resumen" class="resumen-list">
-        <!-- Se inyectan mini-cards desde script.js -->
-      </div>
+      <div id="resumen" class="resumen-list"></div>
 
       <div class="total-bar">
         <div class="total-info">
@@ -99,12 +91,8 @@
           <span id="total" class="total-amount">$0</span>
         </div>
         <div class="total-actions">
-          <button id="descargarPDF" class="btn btn-primary">
-            <span class="btn-icon">📄</span> Descargar PDF
-          </button>
-          <button id="enviarWhatsApp" class="btn btn-success">
-            <span class="btn-icon">💬</span> Enviar WhatsApp
-          </button>
+          <button id="descargarPDF" class="btn btn-primary"><span class="btn-icon">📄</span> Descargar PDF</button>
+          <button id="enviarWhatsApp" class="btn btn-success"><span class="btn-icon">💬</span> Enviar WhatsApp</button>
         </div>
       </div>
     </section>
@@ -130,11 +118,11 @@
     </div>
   </footer>
 
-  <!-- Librerías para PDF (mantén este orden) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-NaWf0m8p4N2Qnjh2nIov1T3cZ0qD2GQ1dQn3bV0dV4M6lX0f2c7m4qf3m1p58yX8mL4yRk2o0R3oXG4z4k+K2w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.3/jspdf.plugin.autotable.min.js" integrity="sha512-0H2Y6z8mGv7oFZtUJoJb2b6Y2wE3zT/7wIAtzM1QeYpK0Qf0R3Zx0m8Z0fDg3Zb8gQf1h3QqW2H0n2c9p1c0bWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Librerías para PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.3/jspdf.plugin.autotable.min.js"></script>
 
-  <!-- Tu lógica -->
+  <!-- Script para cotizador -->
   <script src="script.js"></script>
 
   <!-- Botón flotante subir -->
