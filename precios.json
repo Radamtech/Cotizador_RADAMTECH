@@ -2,8 +2,8 @@
   "Paginas Web": {
     "Básicos": [
       { "nombre": "Lógica de Textos y Diseño", "precio": 500 },
-      { "nombre": "Número de páginas", "precio": 200 },
-      { "nombre": "Número de Secciones", "precio": 150 },
+      { "nombre": "Número de páginas", "precio": 200, "multiplicable": true },
+      { "nombre": "Número de Secciones", "precio": 150, "multiplicable": true },
       { "nombre": "Imágenes y Logos", "precio": 300 },
       { "nombre": "Ubicaciones, Documentos, Frames, etc", "precio": 250 },
       { "nombre": "Animaciones", "precio": 400 },
@@ -37,7 +37,7 @@
   },
   "Aplicaciones": {
     "Básicos": [
-      { "nombre": "Número de Pantallas", "precio": 300 },
+      { "nombre": "Número de Pantallas", "precio": 300, "multiplicable": true },
       { "nombre": "Elementos de interfaz de Usuario", "precio": 250 },
       { "nombre": "Multiplataforma", "precio": 350 },
       { "nombre": "Imágenes y Logos", "precio": 200 },
