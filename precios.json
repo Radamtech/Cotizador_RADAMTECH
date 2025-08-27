@@ -1,61 +1,61 @@
 {
   "Paginas Web": {
     "Básicos": [
-      { "nombre": "Lógica de Textos y Diseño", "precio": 500 },
+      { "nombre": "Lógica de Textos y Diseño", "precio": 750 },
       { "nombre": "Número de páginas", "precio": 200, "multiplicable": true },
-      { "nombre": "Número de Secciones", "precio": 150, "multiplicable": true },
+      { "nombre": "Número de Secciones", "precio": 600, "multiplicable": true },
       { "nombre": "Imágenes y Logos", "precio": 300 },
-      { "nombre": "Ubicaciones, Documentos, Frames, etc", "precio": 250 },
+      { "nombre": "Ubicaciones, Documentos, Frames, etc", "precio": 500 },
       { "nombre": "Animaciones", "precio": 400 },
-      { "nombre": "Multiplataforma", "precio": 350 }
+      { "nombre": "Multiplataforma", "precio": 400 }
     ],
     "Avanzados": [
-      { "nombre": "Sistema de Blogs/Noticias", "precio": 600 },
+      { "nombre": "Sistema de Blogs/Noticias", "precio": 1000 },
       { "nombre": "Sistema de Portafolio/Galería", "precio": 700 },
       { "nombre": "Sistema de Comentarios", "precio": 400 },
       { "nombre": "Sistema de Reseñas/Testimonios", "precio": 500 },
       { "nombre": "Múltiples idiomas", "precio": 450 },
-      { "nombre": "Sistema de Pagos en tarjeta", "precio": 800 },
+      { "nombre": "Sistema de Pagos en tarjeta", "precio": 900 },
       { "nombre": "Sistema de Catálogos", "precio": 600 },
       { "nombre": "Sistema de Carrito y Gestión de pedidos", "precio": 900 },
       { "nombre": "Certificado SSL", "precio": 200 },
-      { "nombre": "Política de privacidad y aviso legal", "precio": 150 }
+      { "nombre": "Política de privacidad y aviso legal", "precio": 250 }
     ],
     "Profesionales": [
-      { "nombre": "Sistema de Log-In/Register", "precio": 700 },
-      { "nombre": "Sistema de Permisos o Roles", "precio": 600 },
-      { "nombre": "Integración con APIs de terceros", "precio": 900 },
-      { "nombre": "Buscador avanzado", "precio": 500 },
-      { "nombre": "Análisis y métricas", "precio": 400 }
+      { "nombre": "Sistema de Log-In/Register", "precio": 950 },
+      { "nombre": "Sistema de Permisos o Roles", "precio": 1000 },
+      { "nombre": "Integración con APIs de terceros", "precio": 1100 },
+      { "nombre": "Buscador avanzado", "precio": 700 },
+      { "nombre": "Análisis y métricas", "precio": 800 }
     ],
     "Extras": [
       { "nombre": "Mantenimiento Mensual", "precio": 300 },
       { "nombre": "Dominio y Hosting", "precio": 250 },
-      { "nombre": "SEO", "precio": 350 },
-      { "nombre": "Analíticas web", "precio": 300 }
+      { "nombre": "SEO", "precio": 500 },
+      { "nombre": "Analíticas web", "precio": 800 }
     ]
   },
   "Aplicaciones": {
     "Básicos": [
       { "nombre": "Número de Pantallas", "precio": 300, "multiplicable": true },
-      { "nombre": "Elementos de interfaz de Usuario", "precio": 250 },
-      { "nombre": "Multiplataforma", "precio": 350 },
-      { "nombre": "Imágenes y Logos", "precio": 200 },
-      { "nombre": "Ubicaciones, Documentos, Frames, etc", "precio": 180 },
-      { "nombre": "Animaciones", "precio": 220 }
+      { "nombre": "Elementos de interfaz de Usuario", "precio": 500 },
+      { "nombre": "Multiplataforma", "precio": 500 },
+      { "nombre": "Imágenes y Logos", "precio": 400 },
+      { "nombre": "Ubicaciones, Documentos, Frames, etc", "precio": 400 },
+      { "nombre": "Animaciones", "precio": 600 }
     ],
     "Avanzados": [
-      { "nombre": "Base de datos", "precio": 500 },
-      { "nombre": "Log-in/Register", "precio": 400 },
-      { "nombre": "Sistema de Permisos/Roles", "precio": 450 },
+      { "nombre": "Base de datos", "precio": 800 },
+      { "nombre": "Log-in/Register", "precio": 1000 },
+      { "nombre": "Sistema de Permisos/Roles", "precio": 900 },
       { "nombre": "Notificaciones push", "precio": 350 },
-      { "nombre": "Sistemas de Pagos", "precio": 600 }
+      { "nombre": "Sistemas de Pagos", "precio": 900 }
     ],
     "Profesionales": [
       { "nombre": "Integración con APIs de terceros", "precio": 700 },
-      { "nombre": "Localización y multi-idioma", "precio": 500 },
+      { "nombre": "Localización y multi-idioma", "precio": 700 },
       { "nombre": "Análisis y métricas", "precio": 400 },
-      { "nombre": "Sistema de búsqueda avanzada y filtros", "precio": 450 }
+      { "nombre": "Sistema de búsqueda avanzada y filtros", "precio": 500 }
     ],
     "Extras": [
       { "nombre": "Mantenimiento y Soporte mensual", "precio": 300 },
@@ -66,27 +66,27 @@
   "Servidores": {
     "Básicos": [
       { "nombre": "Servidor Web (Apache/Nginx)", "precio": 500 },
-      { "nombre": "Sistema Operativo (Linux/Windows)", "precio": 300 },
-      { "nombre": "Base de Datos (MySQL/PostgreSQL)", "precio": 400 },
-      { "nombre": "Acceso Remoto (SSH)", "precio": 200 },
-      { "nombre": "Firewall básico", "precio": 250 }
+      { "nombre": "Sistema Operativo (Linux/Windows)", "precio": 800 },
+      { "nombre": "Base de Datos (MySQL/PostgreSQL)", "precio": 700 },
+      { "nombre": "Acceso Remoto (SSH)", "precio": 400 },
+      { "nombre": "Firewall básico", "precio": 350 }
     ],
     "Avanzados": [
       { "nombre": "Certificado SSL", "precio": 200 },
-      { "nombre": "Monitoreo de Rendimiento", "precio": 350 },
-      { "nombre": "Automatización de tareas", "precio": 400 },
-      { "nombre": "Control de Versiones (Git)", "precio": 300 }
+      { "nombre": "Monitoreo de Rendimiento", "precio": 500 },
+      { "nombre": "Automatización de tareas", "precio": 900 },
+      { "nombre": "Control de Versiones (Git)", "precio": 500 }
     ],
     "Profesionales": [
-      { "nombre": "Balanceo de Carga (Load Balancing)", "precio": 600 },
-      { "nombre": "Contenedores (Docker)", "precio": 500 },
-      { "nombre": "Orquestación de Contenedores (Kubernetes)", "precio": 700 },
-      { "nombre": "Replicación de Bases de Datos", "precio": 400 }
+      { "nombre": "Balanceo de Carga (Load Balancing)", "precio": 800 },
+      { "nombre": "Contenedores (Docker)", "precio": 700 },
+      { "nombre": "Orquestación de Contenedores (Kubernetes)", "precio": 900 },
+      { "nombre": "Replicación de Bases de Datos", "precio": 600 }
     ],
     "Extras": [
       { "nombre": "Copias de Seguridad", "precio": 250 },
-      { "nombre": "Dominio y DNS", "precio": 200 },
-      { "nombre": "Mantenimiento y Actualizaciones", "precio": 300 },
+      { "nombre": "Dominio y DNS", "precio": 600 },
+      { "nombre": "Mantenimiento y Actualizaciones", "precio": 400 },
       { "nombre": "Red de Distribución de Contenido (CDN)", "precio": 400 }
     ]
   }
