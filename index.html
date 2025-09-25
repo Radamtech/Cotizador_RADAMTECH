@@ -47,8 +47,8 @@
     <!-- Sección 2 -->
     <section id="seccion2" class="section card glass">
       <div class="section-head">
-        <h3>Sección 2: Descuentos, Categoría y Notas</h3>
-        <p>Aplica un descuento, selecciona la categoría y agrega notas para el cliente.</p>
+        <h3>Sección 2: Descuentos, Cliente y Notas</h3>
+        <p>Aplica un descuento, completa los datos del cliente y agrega notas.</p>
       </div>
 
       <div class="form-grid">
@@ -60,22 +60,26 @@
           </div>
         </div>
 
-        <!-- 🔹 Selección de Categoría -->
+        <div class="field">
+          <label for="cliente">Cliente</label>
+          <input type="text" id="cliente" placeholder="Nombre del cliente" />
+        </div>
+
+        <div class="field">
+          <label for="formaPago">Forma de pago</label>
+          <select id="formaPago">
+            <option value="Transferencia">Transferencia</option>
+            <option value="Depósito">Depósito</option>
+            <option value="Tarjeta">Tarjeta</option>
+          </select>
+        </div>
+
         <div class="field">
           <label>Categoría</label>
           <div class="input-wrap">
-            <label>
-              <input type="radio" name="categoria" value="Servidores" checked>
-              Servidores
-            </label>
-            <label>
-              <input type="radio" name="categoria" value="Página Web">
-              Página Web
-            </label>
-            <label>
-              <input type="radio" name="categoria" value="Aplicaciones">
-              Aplicaciones
-            </label>
+            <label><input type="radio" name="categoria" value="Servidores" checked> Servidores</label>
+            <label><input type="radio" name="categoria" value="Página Web"> Página Web</label>
+            <label><input type="radio" name="categoria" value="Aplicaciones"> Aplicaciones</label>
           </div>
         </div>
 
@@ -89,7 +93,7 @@
         </div>
 
         <div class="field field-notas">
-          <label for="notas">Notas</label>
+          <label for="notas">Notas y especificaciones</label>
           <textarea id="notas" rows="4" placeholder="Ej. Entrega estimada en 10 días; incluye 2 rondas de cambios."></textarea>
         </div>
       </div>
