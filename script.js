@@ -110,36 +110,29 @@ document.getElementById("descargarPDF").addEventListener("click", () => {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
-  // === Logo ===
+  // Logo
   let img = new Image();
   img.src = "logo.png";
   img.onload = function() {
-    doc.addImage(img, "PNG", 15, 10, 25, 25); // x, y, ancho, alto
+    doc.addImage(img, "PNG", 15, 10, 25, 25);
 
-    // === Encabezado ===
     doc.setFontSize(18);
     doc.text("RADAM TECH", 105, 20, { align: "center" });
     doc.setFontSize(12);
     doc.text("Cotización de Servicios Digitales", 105, 28, { align: "center" });
 
-    // === Fecha ===
     let hoy = new Date();
-    let fechaStr = hoy.toLocaleDateString("es-MX", {
-      day: "2-digit",
-      month: "long",
-      year: "numeric"
-    });
+    let fechaStr = hoy.toLocaleDateString("es-MX", { day:"2-digit", month:"long", year:"numeric" });
     doc.setFontSize(10);
     doc.text(`Fecha: ${fechaStr}`, 200, 15, { align: "right" });
 
-    // === Categoría ===
     let categoria = document.querySelector('input[name="categoria"]:checked')?.value || "No especificada";
     doc.text(`Categoría: ${categoria}`, 200, 22, { align: "right" });
 
-    // === Tabla ===
+    // Tabla
     let rows = seleccion.map(item => {
       let precioItem = item.precioTotal || item.precio;
-      let cantidad = item.cantidad || 1; // por defecto 1
+      let cantidad = item.cantidad || 1;
       return [item.nombre, cantidad, `$${precioItem}`];
     });
 
@@ -161,18 +154,25 @@ document.getElementById("descargarPDF").addEventListener("click", () => {
       bodyStyles: { fillColor: [5,20,35], textColor: 255, halign: "center" },
       styles: { lineColor: [255,255,255], lineWidth: 0.25 },
       didParseCell: function (data) {
-        if (data.row.index === rows.length - 1) { // resaltar TOTAL
-          data.cell.styles.fillColor = [42,134,255];
-          data.cell.styles.fontStyle = "bold";
-        }
+        if (data.row.index === rows.length - 1) { data.cell.styles.fillColor = [42,134,255]; data.cell.styles.fontStyle = "bold"; }
       }
     });
 
-    // === Notas ===
+    // Datos legales y cliente
+    const rfc = "AAMR061214HOCNJDA7";
+    const vigencia = "Esta cotización es válida por 15 días hábiles";
+    const cliente = document.getElementById("cliente").value || "No especificado";
+    const formaPago = document.getElementById("formaPago").value;
+
+    doc.text(`RFC: ${rfc}`, 14, doc.lastAutoTable.finalY + 20);
+    doc.text(`Cliente: ${cliente}`, 14, doc.lastAutoTable.finalY + 26);
+    doc.text(`Forma de pago: ${formaPago}`, 14, doc.lastAutoTable.finalY + 32);
+    doc.text(vigencia, 14, doc.lastAutoTable.finalY + 38);
+
     let notas = document.getElementById("notas").value;
     if(notas){
-      doc.text("Notas:", 14, doc.lastAutoTable.finalY + 10);
-      doc.text(notas, 14, doc.lastAutoTable.finalY + 16);
+      doc.text("Notas:", 14, doc.lastAutoTable.finalY + 48);
+      doc.text(notas, 14, doc.lastAutoTable.finalY + 54);
     }
 
     doc.save("cotizacion.pdf");
@@ -185,6 +185,10 @@ document.getElementById("enviarWhatsApp").addEventListener("click", ()=>{
   if(!telefono){ alert("Ingresa un número de WhatsApp"); return; }
 
   let categoria = document.querySelector('input[name="categoria"]:checked')?.value || "No especificada";
+  const rfc = "AAMR061214HOCNJDA7";
+  const vigencia = "Esta cotización es válida por 15 días hábiles";
+  const cliente = document.getElementById("cliente").value || "No especificado";
+  const formaPago = document.getElementById("formaPago").value;
 
   let mensaje = "Cotización RADAM TECH%0A%0A";
   mensaje += `Categoría: ${categoria}%0A`;
@@ -201,6 +205,10 @@ document.getElementById("enviarWhatsApp").addEventListener("click", ()=>{
   mensaje += `%0ASubtotal: $${subtotal}`;
   mensaje += `%0ADescuento: ${descuento}%`;
   mensaje += `%0ATOTAL: $${totalFinal}`;
+  mensaje += `%0ARFC: ${rfc}`;
+  mensaje += `%0ACliente: ${cliente}`;
+  mensaje += `%0AForma de pago: ${formaPago}`;
+  mensaje += `%0AVigencia: ${vigencia}`;
   mensaje += `%0ANotas: ${document.getElementById("notas").value}`;
 
   window.open(`https://wa.me/${telefono}?text=${mensaje}`,"_blank");
