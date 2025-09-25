@@ -105,6 +105,7 @@ function actualizarResumen(){
   document.getElementById("total").textContent = `$${totalFinal}`;
 }
 
+// === Generar PDF ===
 document.getElementById("descargarPDF").addEventListener("click", () => {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -132,7 +133,7 @@ document.getElementById("descargarPDF").addEventListener("click", () => {
     doc.text(`Fecha: ${fechaStr}`, 200, 15, { align: "right" });
 
     // === Categoría ===
-    let categoria = document.getElementById("categoria").value || "No especificada";
+    let categoria = document.querySelector('input[name="categoria"]:checked')?.value || "No especificada";
     doc.text(`Categoría: ${categoria}`, 200, 22, { align: "right" });
 
     // === Tabla ===
@@ -178,11 +179,15 @@ document.getElementById("descargarPDF").addEventListener("click", () => {
   };
 });
 
+// === Enviar WhatsApp ===
 document.getElementById("enviarWhatsApp").addEventListener("click", ()=>{
   let telefono = document.getElementById("telefono").value;
   if(!telefono){ alert("Ingresa un número de WhatsApp"); return; }
 
+  let categoria = document.querySelector('input[name="categoria"]:checked')?.value || "No especificada";
+
   let mensaje = "Cotización RADAM TECH%0A%0A";
+  mensaje += `Categoría: ${categoria}%0A`;
   seleccion.forEach(item=>{
     let cantidad = item.cantidad ? ` x${item.cantidad}` : "";
     let precioItem = item.precioTotal || item.precio;
