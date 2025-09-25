@@ -109,42 +109,73 @@ document.getElementById("descargarPDF").addEventListener("click", () => {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
-  doc.setFontSize(18);
-  doc.text("RADAM TECH", 105, 20, { align: "center" });
-  doc.setFontSize(12);
-  doc.text("Cotización de Servicios Digitales", 105, 28, { align: "center" });
+  // === Logo ===
+  let img = new Image();
+  img.src = "logo.png";
+  img.onload = function() {
+    doc.addImage(img, "PNG", 15, 10, 25, 25); // x, y, ancho, alto
 
-  let rows = seleccion.map(item => {
-    let precioItem = item.precioTotal || item.precio;
-    let cantidad = item.cantidad || "";
-    return [item.nombre, cantidad, `$${precioItem}`];
-  });
+    // === Encabezado ===
+    doc.setFontSize(18);
+    doc.text("RADAM TECH", 105, 20, { align: "center" });
+    doc.setFontSize(12);
+    doc.text("Cotización de Servicios Digitales", 105, 28, { align: "center" });
 
-  let subtotal = seleccion.reduce((acc,item)=>acc + (item.precioTotal||item.precio),0);
-  let descuento = parseInt(document.getElementById("descuento").value) || 0;
-  let totalFinal = subtotal - (subtotal*descuento/100);
+    // === Fecha ===
+    let hoy = new Date();
+    let fechaStr = hoy.toLocaleDateString("es-MX", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric"
+    });
+    doc.setFontSize(10);
+    doc.text(`Fecha: ${fechaStr}`, 200, 15, { align: "right" });
 
-  rows.push(["", "", ""]);
-  rows.push(["Subtotal","", `$${subtotal}`]);
-  rows.push([`Descuento (${descuento}%)`,"", `- $${(subtotal*descuento/100).toFixed(2)}`]);
-  rows.push(["TOTAL","", `$${totalFinal}`]);
+    // === Categoría ===
+    let categoria = document.getElementById("categoria").value || "No especificada";
+    doc.text(`Categoría: ${categoria}`, 200, 22, { align: "right" });
 
-  doc.autoTable({
-    head: [["Concepto","Cant.","Precio"]],
-    body: rows,
-    startY: 40,
-    theme: "grid",
-    headStyles: { fillColor: [42,134,255], textColor: 255 },
-    bodyStyles: { fillColor: [5,20,35], textColor: 255 }
-  });
+    // === Tabla ===
+    let rows = seleccion.map(item => {
+      let precioItem = item.precioTotal || item.precio;
+      let cantidad = item.cantidad || 1; // por defecto 1
+      return [item.nombre, cantidad, `$${precioItem}`];
+    });
 
-  let notas = document.getElementById("notas").value;
-  if(notas){
-    doc.text("Notas:", 14, doc.lastAutoTable.finalY + 10);
-    doc.text(notas, 14, doc.lastAutoTable.finalY + 16);
-  }
+    let subtotal = seleccion.reduce((acc,item)=>acc + (item.precioTotal||item.precio),0);
+    let descuento = parseInt(document.getElementById("descuento").value) || 0;
+    let totalFinal = subtotal - (subtotal*descuento/100);
 
-  doc.save("cotizacion.pdf");
+    rows.push(["", "", ""]);
+    rows.push(["Subtotal","", `$${subtotal}`]);
+    rows.push([`Descuento (${descuento}%)`,"", `- $${(subtotal*descuento/100).toFixed(2)}`]);
+    rows.push(["TOTAL","", `$${totalFinal}`]);
+
+    doc.autoTable({
+      head: [["Concepto","Cant.","Precio"]],
+      body: rows,
+      startY: 40,
+      theme: "grid",
+      headStyles: { fillColor: [42,134,255], textColor: 255, halign: "center" },
+      bodyStyles: { fillColor: [5,20,35], textColor: 255, halign: "center" },
+      styles: { lineColor: [255,255,255], lineWidth: 0.25 },
+      didParseCell: function (data) {
+        if (data.row.index === rows.length - 1) { // resaltar TOTAL
+          data.cell.styles.fillColor = [42,134,255];
+          data.cell.styles.fontStyle = "bold";
+        }
+      }
+    });
+
+    // === Notas ===
+    let notas = document.getElementById("notas").value;
+    if(notas){
+      doc.text("Notas:", 14, doc.lastAutoTable.finalY + 10);
+      doc.text(notas, 14, doc.lastAutoTable.finalY + 16);
+    }
+
+    doc.save("cotizacion.pdf");
+  };
 });
 
 document.getElementById("enviarWhatsApp").addEventListener("click", ()=>{
