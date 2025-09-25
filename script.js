@@ -118,7 +118,7 @@ document.getElementById("descargarPDF").addEventListener("click", () => {
   const hoy = new Date();
   const fechaStr = hoy.toLocaleDateString("es-MX", { day:"2-digit", month:"long", year:"numeric" });
   const categoria = document.querySelector('input[name="categoria"]:checked')?.value || "No especificada";
-  const numCotizacion = `COT-${rfc}-${hoy.getFullYear()}${(hoy.getMonth()+1).toString().padStart(2,"0")}${hoy.getDate().toString().padStart(2,"0")}`;
+  const numCotizacion = `COT-${hoy.getFullYear()}${(hoy.getMonth()+1).toString().padStart(2,"0")}${hoy.getDate().toString().padStart(2,"0")}`;
 
   let subtotal = seleccion.reduce((acc,item)=>acc + (item.precioTotal||item.precio),0);
   let descuento = parseInt(document.getElementById("descuento")?.value) || 0;
