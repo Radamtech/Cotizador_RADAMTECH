@@ -152,7 +152,7 @@ document.getElementById("descargarPDF").addEventListener("click", () => {
     doc.setFillColor(42,134,255);
     doc.rect(0, footerY-5, 210, 15, "F");
     doc.setFontSize(10); doc.setFont("helvetica","normal"); doc.setTextColor(255,255,255);
-    doc.text("RADAM TECH - Contacto: Rodolfo Alexis / Daniela Valentina - Tel: 722 612 8347 - www.radamtech.com", 105, footerY+5, { align:"center" });
+    doc.text("RADAM TECH - Contacto: Rodolfo Alexis - Tel: 722 612 8347 - www.radamtech.online", 105, footerY+5, { align:"center" });
   };
 
   drawHeaderFooter(doc);
